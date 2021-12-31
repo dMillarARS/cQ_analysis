@@ -234,9 +234,10 @@ processStormEventsWithConc <- function(stormIds,
                                     end_dt=max(datetime))
   
   # combine these event data into one dataframe
-  allEventDTs <- bind_cols(peakFlowPerEvent,
-                              startAndEndDTs) %>%
-                                select(!c(storm_id1,storm_y_n)) %>%
+   allEventDTs <- left_join(peakFlowPerEvent,
+                            startAndEndDTs,
+                            by="storm_id") %>%
+                                select(!c(storm_y_n)) %>%
                                   rename(peak_dt = datetime,
                                          peak_sm_flow = smooth_st_flow)
   
