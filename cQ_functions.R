@@ -612,7 +612,7 @@ stormEventCalcs <- function(batchRun,
         storm_id <- paste("storm_",as.character(j),sep="")
         start <- as.character(min(batchRun[[i]][["fullStorms"]][[j]]$datetime))
         end <- as.character(max(batchRun[[i]][["fullStorms"]][[j]]$datetime))
-        tot_q_m3 <- sum((batchRun[[i]][["fullStorms"]][[j]]$smooth_st_flow*60*15))
+        tot_q_m3 <- sum((batchRun[[i]][["fullStorms"]][[j]]$smooth_st_flow*60*timestep_min))
         duration_hrs <- timestep_min*nrow(batchRun[[i]][["fullStorms"]][[j]])/60
         intensity_m3_hr <- tot_q_m3/duration_hrs
         filter_para <- batchRun1[[i]][["fullStorms"]][[j]]$filter_para[1]
